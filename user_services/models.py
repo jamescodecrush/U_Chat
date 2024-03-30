@@ -14,7 +14,7 @@ class User(Base):
     username =Column(String(60), unique= True, nullable=False)
     email = Column(String(120), unique= True, nullable=False)
     hashed_password = Column(String(255), nullable=False)
-
+    
     post = relationship("Blog", back_populates= "owner_id")
     
 class Blog(Base):
