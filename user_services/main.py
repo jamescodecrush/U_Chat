@@ -2,7 +2,6 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from . import crud, models, schemas
 from .database import SessionLocal, engine
-
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -59,4 +58,4 @@ def creat_post_by_user(user_id: str, post: schemas.CreatePost, db: Session = Dep
 @app.get("/posts/", response_model=list[schemas.Post])
 def read_post(skip: int =0, limit: int = 10, db: Session =Depends(get_db)):
       posts = crud.get_all_post(db, skip=skip, limit=limit)
-      return posts
+      return posts 

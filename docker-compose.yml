@@ -1,0 +1,68 @@
+# version: '3.8'
+
+# services:
+#   fastapi:
+#     build: 
+#       context: ./user_services
+#       dockerfile: Dockerfile
+#     ports: 
+#     - "8000:8000"
+#     depends_on:
+#     - db
+#     environment:
+#       MYSQL_HOST=db
+#       MYSQL_USER=root
+#       MYSQL_PASSWORD=password 
+#       MYSQL_DB=mydatabase
+  
+#     restart: always
+
+# db: 
+#    image: mysql:5.7
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_DATABASE: mydatabase
+
+
+#    volumes:
+#     - mysql_data:/var/lib/mysql
+#    ports: 
+#     - "3306:3306"
+#    restart: always
+
+
+# volumes:
+
+#   mysql_data:
+
+version: '3.8'
+
+services:
+  fastapi:
+    build: 
+      context: ./user_services
+      dockerfile: Dockerfile
+    ports: 
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password 
+      MYSQL_DB: mydatabase
+    restart: always
+
+  db: 
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports: 
+      - "3306:3306"
+    restart: always
+
+volumes:
+  mysql_data:

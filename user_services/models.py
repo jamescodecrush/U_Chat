@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, UUID, String, Text, ForeignKey, DateTime
 # from  sqlalchemy.ext.orderinglist import ordering_list
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from database import Base
+from .database import Base
 import uuid
 
 # Base = declarative_base()

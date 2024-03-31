@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr, validator
-from sqlalchemy import UUID
+from uuid import UUID
 from passlib.context import CryptContext
 
 
@@ -17,6 +17,7 @@ class Post(PostBase):
     owner_id: str
 
     class Config:
+        arbitrary_types_allowed = True
         orm_mode = True
 
 class UserBase(BaseModel):
@@ -41,6 +42,7 @@ class User(UserBase):
     post: list[Post] = []
 
     class Config:
+        arbitrary_types_allowed = True
 
         orm_mode =True
 
