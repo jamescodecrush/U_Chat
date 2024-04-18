@@ -17,7 +17,7 @@ class User(Base):
     
     post = relationship("Blog", back_populates= "owner_id")
     
-class Blog(Base):
+class Post(Base):
     __tablename__ ="blog"
     post_id = Column(UUID(as_uuid=True), primary_key= True, unique=True, index=True)
     title = Column(String(255), nullable=False )
@@ -26,6 +26,6 @@ class Blog(Base):
     created_date = Column(DateTime(timezone=True), onupdate= func.now())
     owner_id = (String, ForeignKey("users.user_id"))
 
-    owner_id = relationship("Users", back_populates= "post")
+    owner_id = relationship("User", back_populates= "post")
 
 

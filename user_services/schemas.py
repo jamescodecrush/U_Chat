@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr, validator
-from uuid import UUID
 from passlib.context import CryptContext
+import uuid
 
 
 
@@ -13,8 +13,8 @@ class CreatePost(PostBase):
     pass
 
 class Post(PostBase):
-    post_id: UUID
-    owner_id: str
+    post_id: uuid.UUID
+    owner_id: uuid.UUID
 
     class Config:
         arbitrary_types_allowed = True
@@ -38,7 +38,7 @@ class CreateUser(UserBase):
 
 
 class User(UserBase):
-    user_id: UUID
+    user_id: uuid.UUID
     post: list[Post] = []
 
     class Config:
